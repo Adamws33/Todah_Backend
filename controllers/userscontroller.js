@@ -86,12 +86,12 @@ router.post('/login', requireSignin , (req, res, next) => {
     // res.json({message: "logged in successfully", user: userData})
 })
 
-router.get('/', function(req, res) {
-    var userid = req.user.id;
-    console.log("******************",userid)
-      Log
-      .findAll({
-          where: { owner: userid }
+router.get('/:email', function(req, res) {
+
+    console.log("******************",req)
+    var user = req.params.email;
+      User.findAll({
+          where: { email: user }
       })
       .then(
           function findAllSuccess(data) {
