@@ -14,6 +14,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+app.use('/api/users', require('./controllers/userscontroller'));
+app.use('/api/test', function(req,res){
+    res.send("Hello World")
+  })
 // endpoints 
 router(app);
 
