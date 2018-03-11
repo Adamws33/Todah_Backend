@@ -23,7 +23,8 @@
     "pg": "^6.4.2",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.35.2",
-    "sequelize-cli": "^3.2.0"
+    "sequelize-cli": "^3.2.0",
+    "text-file-follower": "^0.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
