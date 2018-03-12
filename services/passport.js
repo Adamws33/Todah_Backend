@@ -6,6 +6,20 @@ const db = require('../models/index').sequelize;
 const User = db.import('../models/users');
 const bcrypt = require('bcryptjs');
 const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
+const JWTStrategy = require('passport-jwt').Strategy
+const ExtractJwt = require('passport-jwt').ExtractJwt;
+
+passport.use(new JWTStrategy(
+    {jwtFromRequest: ExtractJwt.fromHeader('authorization'), secretOrKey: process.env.JWT_SECRET}, 
+    (payload, done) => {
+        User.findOne({where:{uid:payload.sub}}).then(
+            (user) =>{
+                done(null, user)
+            }, 
+            (error) => done(error)
+        )
+    }
+))
 
 passport.use(new LocalStrategy( 
     {usernameField: 'email'},
