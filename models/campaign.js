@@ -1,7 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var campaign = sequelize.define('campaign', {
-  
+    orgname:{
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     chapname:{
       type: DataTypes.STRING,
     },
