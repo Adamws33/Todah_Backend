@@ -1,8 +1,12 @@
 const passport = require('passport'); 
 const LocalStrategy = require('passport-local').Strategy; 
+const FacebookStrategy =require('passport-facebook').Strategy;
+const TwitterStrategy = require('passport-twitter').Strategy;
+const BearerStrategy = require('passport-bearer').Strategy;
 const db = require('../models/index').sequelize; 
 const User = db.import('../models/users');
 const bcrypt = require('bcryptjs');
+const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 
 passport.use(new LocalStrategy( 
     {usernameField: 'email'},
@@ -17,6 +21,48 @@ passport.use(new LocalStrategy(
             },
             (err) => done(err))
     })
-)
+);
+passport.use(new BearerStrategy(
+    function(token,done) {
+        User.findOne({token: token}, function (err,user){
+            if(err) {return done(err);}
+            if(!user) {return done(null,false);}
+            return done (null,user, {scope: 'all'});
+        });
+    }
+));
+passport.use(new FacebookStrategy({
+    clientId: FACEBOOK_APP_ID,
+    callbackURL: "http://localHost:300/auth/Facebook/callback"
+},
+function(accessToken,refreshToken,profile,cb ){
+    User.findOrCreate({facebookId:profile.id}, function (err,user){
+        return cb(err,user);
+    } );
+}
+));
+passport.use(new TwitterStrategy({
+    customerKey: TWITTER_CONSUMER_KEY,
+    consumerSecret: TWITTER_CONSUMER_SECRET,
+    callbackURL:"HTTP://127.0.0.1:3000/auth/twitter/callback"
+},
+function(token,tokenSecret,profile,cb){
+    User.findOrCreate ({twitterId: profile.id}, function(err,user){
+        return cb(err,user);
+    });
+}));
+passport.use (new GoogleStrategy({
+    customerKey: TWITTER_CONSUMER_KEY,
+    consumerSecret: TWITTER_CONSUMER_SECRET,
+    callbackURL:"HTTP://127.0.0.1:3000/auth/google/callback"
+},
+function (token,tokenSecret,profile,done) {
+    User.findOrCreate ({googleId: profile.id}, function(err, user){
+        return done (err,user);
+    });
+}
+));
+
+
 
 module.exports = passport;
