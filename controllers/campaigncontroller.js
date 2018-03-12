@@ -1,11 +1,10 @@
 const router = require('express').Router();
 const db = require('../models/index');
-const User = db.sequelize.import('../models/users');
-const bcrypt = require('bcryptjs');
+const Campaign = db.sequelize.import('../models/campaign');
 const jwt = require('jwt-simple');
 
-router.post('/campaign',(req,res) => {
-    console.log(req.body)
+router.post('/',(req,res) => {
+    console.log("*************req.body*******************", req.body)
     Campaign.create({
        orgname: req.body.orgname,
        chapname: req.body.chapname,
@@ -26,10 +25,11 @@ router.post('/campaign',(req,res) => {
        precampfunds: req.body.precampfunds,
        enddate: req.body.enddate,
        contributors: req.body.contributors,
-        total: req.body.total
+       total: req.body.total
     }).then(
         function createSuccess(campaign){
             res.json(campaign)
+            console.log("*********CAMPAIGN AFTER POST *********************", campaign)
         },
         function createError(err) {
             res.send(500, err.message);
@@ -37,10 +37,10 @@ router.post('/campaign',(req,res) => {
     );
 })
 
-router.delete('/campaign',function(req,res) {
-    var data = req.body.campaign;
+router.delete('/:id',function(req,res) {
+    var data = req.params.id;
     Campaign.destroy({
-        where: { campaign: data }
+        where: { id: data }
     }).then(
         function deleteCampaignSuccess(data){
             res.send("You have successfully deleted your campaign.");

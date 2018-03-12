@@ -28,7 +28,7 @@ router.post('/signup',(req, res)  => {
                 firstName : successData.firstname,
                 lastName : successData.lastname,
                 email : successData.email,
-                token : createToken(successData.uid),
+                // token : createToken(successData.uid),
                 //per inconsistency with API requeest and model removed img key
                 // img: successData.img
             }
