@@ -4,7 +4,7 @@ const User = db.sequelize.import('../models/users');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 require('../services/passport');
-const requireSignin = passport.authenticate('local', {session: false});
+const requireSignin = passport.authenticate('local','twitter','bearer','facebook', {session: false});
 const jwt = require('jwt-simple');
 
 
@@ -38,7 +38,7 @@ router.post('/signup',(req, res)  => {
             res.send({error: err})
         }
     )    
-})
+}) 
 
 router.post('/login', requireSignin , (req, res, next) => {
     console.log("**************rew*************", req.body)
