@@ -4,8 +4,9 @@ const User = db.sequelize.import('../models/users');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 require('../services/passport');
-const requireSignin = passport.authenticate('local','twitter','bearer','facebook', {session: false});
+const requireSignin = passport.authenticate('local', {session: false});
 const jwt = require('jwt-simple');
+// const requireJWT = passport.authenticate('jwt', {session: false});
 
 
 const createToken = (userId) => {
@@ -14,7 +15,7 @@ const createToken = (userId) => {
     // process.env.JWTSECRET
 } 
 
-router.post('/signup',(req, res)  => {
+router.post('/signup', (req, res)  => {
     console.log("*************** signup req.body ************************", req.body)
     User.create({
         firstname: req.body.firstname,
@@ -40,7 +41,7 @@ router.post('/signup',(req, res)  => {
     )    
 }) 
 
-router.post('/login', requireSignin , (req, res, next) => {
+router.post('/login', requireSignin ,  (req, res, next) => {
     console.log("**************rew*************", req.body)
     // const userData = {
     //         // firstName : req.body.firstname,
