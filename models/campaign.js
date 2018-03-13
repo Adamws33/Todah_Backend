@@ -4,17 +4,20 @@ module.exports = (sequelize, DataTypes) => {
     id:{
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true,
     },
     modified_date:{
-      type: DataTypes.DATE(6),
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
       timestamps: true,
       modifiedAt: true
     },
     created_date:{
-      type: DataTypes.DATE(6),
-      timestamps: true,
-      createdAt: true
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW
+      // timestamps: true,
+      // createdAt: true
       //timestamp with timezone
     },
     project_img_thumb_url: {
@@ -211,7 +214,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     youtube_url:{
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       validate:{
         max:200
       }
@@ -230,8 +233,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     launch_date:{
       type: DataTypes.DATE(6),
-      timestamps: true,
-      createdAt: true
+      defaultValue: DataTypes.NOW
+      // timestamps: true,
+      // createdAt: true
       //time stamp with timezone
     },
 
