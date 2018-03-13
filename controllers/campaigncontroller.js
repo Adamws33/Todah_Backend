@@ -7,7 +7,6 @@ router.post('/',(req,res) => {
     console.log("*************req.body*******************", req.body)
     Campaign.create({
        id: req.body.id,
-       chapname: req.body.chapname,
        modified_date: req.body.modified_date,
        create_date: req.body.create_date,
        project_image_thumb_url: req.body.project_image_thumb_url,
