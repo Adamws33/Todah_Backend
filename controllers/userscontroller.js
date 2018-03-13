@@ -19,17 +19,17 @@ const createToken = (userId) => {
 router.post('/signup', (req, res)  => {
     console.log("*************** signup req.body ************************", req.body)
     User.create({
-        id: req.body.id,
         password: bcrypt.hashSync(req.body.password), 
         last_login: req.body.last_login,
         is_superuser: req.body.is_superuser,
         username: req.body.username,
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
+        first_name: req.body.firstname,
+        last_name: req.body.lastname,
         email: req.body.email,
         is_staff: req.body.is_staff,
         is_active: req.body.is_active,
         date_joined: req.body.date_joined,
+        
         
         
         
@@ -38,15 +38,11 @@ router.post('/signup', (req, res)  => {
     }).then(
         (successData) => {
             const userData = {
-                firstName : successData.firstname,
-                lastName : successData.lastname, 
-                email : successData.email,
-                token : createToken(successData.uid),
-                //per inconsistency with API requeest and model removed img key
-                // img: successData.img
+            token : createToken(successData.uid),
             }
             console.log("*************** token ************************", userData.token)
-            res.json({message: `Welcome ${userData.firstName}`, data: userData})
+            console.log("*************** successData ************************", successData)
+            res.json({message: `Welcome ${successData.first_name}`, data: successData, token: userData.token})
         },
         (err) => {
             res.send({error: err})
