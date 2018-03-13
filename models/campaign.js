@@ -1,76 +1,238 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var campaign = sequelize.define('campaign', {
-  
-    chapname:{
-      type: DataTypes.STRING,
-    },
-    staffname:{
-      type: DataTypes.STRING,
-    },
-    camptitle: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    campcreatorrole:{
-      type: DataTypes.STRING,
-    },
-    campcat: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    camptease: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    camplongdesc: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    origwebsite:{
-      type: DataTypes.STRING,
-    },
-    campimg: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    addimg:{
-      type: DataTypes.STRING,
-    },
-    facebook:{
-      type: DataTypes.STRING,
-    },
-    twitter:{
-      type: DataTypes.STRING,
-    },
-    instagram:{
-      type: DataTypes.STRING,
-    },
-    youtube:{
-      type: DataTypes.STRING,
-    },
-    campGoal:{
+    id:{
       type: DataTypes.INTEGER,
       allowNull: false,
-      //will need to make sure this enters '' (empty) on innitial post
+      primaryKey: true
     },
-    precampfunds:{
+    modified_date:{
+      type: DataTypes.DATE(6),
+      timestamps: true,
+      modifiedAt: true
+    },
+    created_date:{
+      type: DataTypes.DATE(6),
+      timestamps: true,
+      createdAt: true
+      //timestamp with timezone
+    },
+    project_img_thumb_url: {
+      type: DataTypes.STRING,
+      validate:{
+        max:500
+      }
+    },
+    creator_id:{
       type: DataTypes.INTEGER,
     },
-    enddate:{
+    organization_name: {
+      type: DataTypes.STRING,
+      validate:{
+        max:150
+      }
+    },
+    organization_ein: {
+      type: DataTypes.STRING,
+      validate:{
+        max:50
+      }
+    },
+    project_title: {
+      type: DataTypes.STRING,
+      validate:{
+        max:150
+      }
+    },
+    project_purpose:{
+      type: DataTypes.STRING,
+      description: DataTypes.TEXT
+    },
+    project_website: {
+      type: DataTypes.STRING,
+      validate:{
+        max:200
+      }
+    },
+    project_image:{
+      type: DataTypes.STRING,
+      validate:{
+        max:100
+      }
+    },
+    finished_step_one:{
+      type: DataTypes.BOOLEAN,
+      allowNull: false
+    },
+    slider_inputs:{
+      type: DataTypes.STRING,
+      description: DataTypes.TEXT
+    },
+    slider_ranges:{
+      type: DataTypes.STRING,
+      description: DataTypes.TEXT
+    },
+    goal_currency:{
       type: DataTypes.STRING,
       allowNull: false,
-      //will need to make sure this enters '' (empty) on innitial post
+      validate:{
+        max:3
+      }
     },
-    contributors:{
+    goal:{
+      type: DataTypes.DECIMAL(10,2),
+      allowNull: false,
+      validate: {
+        isDecimal: true 
+      }
+    },
+    finished_step_two:{
+      type: DataTypes.BOOLEAN,
+      allowNull: false
+    },
+    end_date:{
+      type: DataTypes.STRING,
+      validate:{
+        isDate: true,
+      }
+    },
+    is_published:{
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    funder_count:{
       type: DataTypes.INTEGER,
       allowNull: false,
-      //will need to make sure this enters '' (empty) on innitial post
     },
-    total:{
-      type: DataTypes.INTEGER,
+    funded_amount_currency:{
+      type: DataTypes.STRING,
       allowNull: false,
-      //will need to make sure this enters '' (empty) on innitial post
+      validate:{
+        max:3
+      }
+    },
+    funded_amount:{
+      type: DataTypes.DECIMAL(10,2),
+      allowNull: false,
+      validate: {
+        isDecimal: true 
+      }
+    },
+    project_video:{
+      type: DataTypes.STRING,
+      validate:{
+        max:200
+      }
+    },
+    project_short_description: {
+      type: DataTypes.STRING,
+      validate:{
+        max:150
+      }
+    },
+    project_category_id: {
+      type: DataTypes.INTEGER,
+    },
+    is_approved:{
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    initial_funds_currency: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate:{
+        max:3
+      }
+    },
+    initial_funds: {
+      type: DataTypes.DECIMAL(10,2),
+      allowNull: false,
+      validate: {
+        isDecimal: true 
+      }
+    },
+    organization_chapter_name: {
+      type: DataTypes.STRING,
+      validate:{
+        max:150
+      }
+    },
+    organization_staff_name:{
+      type: DataTypes.STRING,
+      validate:{
+        max:150
+      }
+    },
+    external_payment_portal: {
+      type: DataTypes.STRING,
+      description: DataTypes.TEXT
+    },
+    is_personal_cause:{
+      type: DataTypes.BOOLEAN,
+    },
+    project_beneficiary:{
+      type: DataTypes.STRING,
+      validate:{
+        max:255
+      }
+    },
+    campaign_slug:{
+      type: DataTypes.STRING,
+      validate:{
+        max:255
+      }
+    },
+    never_event:{
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    project_role:{
+      type: DataTypes.STRING,
+      validate:{
+        max:255
+      }
+    },
+    facebook_url:{
+      type: DataTypes.STRING,
+      validate:{
+        max:200
+      }
+    },
+    instagram_url:{
+      type: DataTypes.STRING,
+      validate:{
+        max:200
+      }
+    },
+    twitter_url:{
+      type: DataTypes.STRING,
+      validate:{
+        max:200
+      }
+    },
+    youtube_url:{
+      type: DataTypes.INTEGER,
+      validate:{
+        max:200
+      }
+    },
+    allow_cash_donations:{
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },    
+    published_email_sent:{
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    client_is_paying_platform_fees:{
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    launch_date:{
+      type: DataTypes.DATE(6),
+      timestamps: true,
+      createdAt: true
+      //time stamp with timezone
     },
 
   }, {

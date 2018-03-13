@@ -2,8 +2,10 @@ const router = require('express').Router();
 const db = require('../models/index');
 const Campaign = db.sequelize.import('../models/campaign');
 const jwt = require('jwt-simple');
+const passport = require('passport');
+const requireJWT = passport.authenticate('jwt', {session: false});
 
-router.post('/',(req,res) => {
+router.post('/',requireJWT,(req,res) => {
     console.log("*************req.body*******************", req.body)
     Campaign.create({
        id: req.body.id,

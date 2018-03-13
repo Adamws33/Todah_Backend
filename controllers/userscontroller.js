@@ -4,17 +4,19 @@ const User = db.sequelize.import('../models/users');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 require('../services/passport');
-const requireSignin = passport.authenticate('local','twitter','bearer','facebook ', {session: false});
+
+const requireSignin = passport.authenticate('local', {session: false});
 const jwt = require('jwt-simple');
- 
+// const requireJWT = passport.authenticate('jwt', {session: false});
+
 
 const createToken = (userId) => {
     const currentTime = new Date().getTime();
-    return jwt.encode({sub: userId , iat: currentTime}, "i_am_secret" || process.env.JWT_SECRET, {expiresIn: 60*60*24} )
+    return jwt.encode({sub: userId , iat: currentTime}, "i_am_secret" || process.env.JWT_SECRET )
     // process.env.JWTSECRET
 } 
 
-router.post('/signup',(req, res)  => {
+router.post('/signup', (req, res)  => {
     console.log("*************** signup req.body ************************", req.body)
     User.create({
         id: req.body.id,
@@ -39,10 +41,11 @@ router.post('/signup',(req, res)  => {
                 firstName : successData.firstname,
                 lastName : successData.lastname, 
                 email : successData.email,
-                // token : createToken(successData.uid),
+                token : createToken(successData.uid),
                 //per inconsistency with API requeest and model removed img key
                 // img: successData.img
             }
+            console.log("*************** token ************************", userData.token)
             res.json({message: `Welcome ${userData.firstName}`, data: userData})
         },
         (err) => {
@@ -51,7 +54,7 @@ router.post('/signup',(req, res)  => {
     )    
 }) 
 
-router.post('/login', requireSignin , (req, res, next) => {
+router.post('/login', requireSignin ,  (req, res, next) => {
     console.log("**************rew*************", req.body)
     // const userData = {
     //         // firstName : req.body.firstname,
@@ -78,9 +81,10 @@ router.post('/login', requireSignin , (req, res, next) => {
                     user:user,
                     message: 'successfully authenticated',
                     // session token not working ATM aws 03/10
-                    // sessionToken: createToken(req.body.uid)
+                    sessionToken: createToken(req.body.uid),
                     message: `Welcome ${user.dataValues.firstname}`
                   });
+                //   console.log("*************** token ************************", res.sessionToken)
                }else{
                 res.status(500).send({error: 'failed to authenticate1'});
                }
