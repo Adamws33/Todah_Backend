@@ -35,6 +35,7 @@ passport.use(new LocalStrategy(
             (err) => done(err))
     })
 );
+
 // passport.use(new BearerStrategy(
 //     function(token,done) {
 //         User.findOne({token: token}, function (err,user){
@@ -75,6 +76,7 @@ passport.use(new LocalStrategy(
 //     });
 // }
 // ));
+
 
 
 
