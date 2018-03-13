@@ -17,11 +17,22 @@ const createToken = (userId) => {
 router.post('/signup',(req, res)  => {
     console.log("*************** signup req.body ************************", req.body)
     User.create({
+        id: req.body.id,
+        password: bcrypt.hashSync(req.body.password), 
+        last_login: req.body.last_login,
+        is_superuser: req.body.is_superuser,
+        username: req.body.username,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         email: req.body.email,
+        is_staff: req.body.is_staff,
+        is_active: req.body.is_active,
+        date_joined: req.body.date_joined,
+        
+        
+        
         // img: req.body.img, 
-        password: bcrypt.hashSync(req.body.password) 
+        
     }).then(
         (successData) => {
             const userData = {
