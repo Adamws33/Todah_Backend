@@ -7,37 +7,67 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
-    firstname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    lastname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
+        max: 128,
         min: {
           args: 5,
           msg: 'Password must have more than 5 characters and contain no spaces.'
         }
       }
     },
+    last_login: {
+      type: DataTypes.DATE(6),
+      timestamps: true,
+      modifiedAt: true
+    },
+    is_superuser: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate:{
+        max:30
+      }
+    },
+    first_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate:{
+        max:30
+      }
+    },
+    last_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate:{
+        max:30
+      }
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: {
-        args: true,
-        msg: 'Email already in use'
-      },
-      validate: {
-        isEmail: {
-          args: true, 
-          msg: "Must be a valid email"
-        }
+      validate:{
+        max: 75,
+        isEmail: true,
       }
+    },
+    is_staff: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    is_active: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    date_joined: {
+      type: DataTypes.DATE(6),
+      timestamps: true,
+      modifiedAt: true
     },
 
   }, {
