@@ -7,6 +7,9 @@ const db = require('../models/index').sequelize;
 const User = db.import('../models/users');
 const bcrypt = require('bcryptjs');
 const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
+const JWTStrategy = require('passport-jwt').Strategy;
+      ExtractJwt=require('passport-jwt').ExactJwt;
+
 
 passport.use(new LocalStrategy( 
     {usernameField: 'email'},
@@ -22,6 +25,20 @@ passport.use(new LocalStrategy(
             (err) => done(err))
     })
 );
+passport.use(new JWTStrategy(opts,function(jwt_payload,done){
+    User.findOne({id: jwt_playload.sub}, function(err,user){
+        if(err){
+            return done(err,false);
+        }
+        if (user){
+            return done(null,user);
+        } else{
+            return done(null, false);
+        }
+
+    });
+}));
+
 passport.use(new BearerStrategy(
     function(token,done) {
         User.findOne({token: token}, function (err,user){
@@ -33,6 +50,7 @@ passport.use(new BearerStrategy(
 ));
 passport.use(new FacebookStrategy({
     clientId: FACEBOOK_APP_ID,
+    clientSecret:Facebook_APP_SECRET,
     callbackURL: "http://localHost:300/auth/Facebook/callback"
 },
 function(accessToken,refreshToken,profile,cb ){
@@ -52,8 +70,8 @@ function(token,tokenSecret,profile,cb){
     });
 }));
 passport.use (new GoogleStrategy({
-    customerKey: TWITTER_CONSUMER_KEY,
-    consumerSecret: TWITTER_CONSUMER_SECRET,
+    customerKey: GOOGLE_CONSUMER_KEY,
+    consumerSecret: GOOGLE_CONSUMER_SECRET,
     callbackURL:"HTTP://127.0.0.1:3000/auth/google/callback"
 },
 function (token,tokenSecret,profile,done) {
@@ -62,6 +80,7 @@ function (token,tokenSecret,profile,done) {
     });
 }
 ));
+
 
 
 

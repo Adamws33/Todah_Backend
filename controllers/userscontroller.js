@@ -4,9 +4,9 @@ const User = db.sequelize.import('../models/users');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 require('../services/passport');
-const requireSignin = passport.authenticate('local','twitter','bearer','facebook', {session: false});
+const requireSignin = passport.authenticate('local','twitter','bearer','facebook ', {session: false});
 const jwt = require('jwt-simple');
-
+ 
 
 const createToken = (userId) => {
     const currentTime = new Date().getTime();
@@ -26,7 +26,7 @@ router.post('/signup',(req, res)  => {
         (successData) => {
             const userData = {
                 firstName : successData.firstname,
-                lastName : successData.lastname,
+                lastName : successData.lastname, 
                 email : successData.email,
                 // token : createToken(successData.uid),
                 //per inconsistency with API requeest and model removed img key
