@@ -206,12 +206,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     twitter_url:{
       type: DataTypes.STRING,
-      validate:{
+      validate:{ 
         max:200
       }
     },
     youtube_url:{
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       validate:{
         max:200
       }
