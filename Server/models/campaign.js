@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     organization_name: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate:{
         max:150
       }
