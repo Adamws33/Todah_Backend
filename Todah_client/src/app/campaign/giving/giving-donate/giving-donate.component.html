@@ -1,0 +1,54 @@
+<!-- Customizable -->
+
+
+<nav class="navbar navbar-default"> 
+  <div class="container">
+    <div class="navbar-header">
+      <h5><i class="fas fa-paw fa-3x" data-fa-transform="shrink-3.5" data-fa-mask="fas fa-circle"></i> ***Category***</h5>
+    </div>
+    <!-- Not mobile friendly.  Still needs work -->
+    <div class="nav navbar-nav" style="position: absolute; left: 40%">
+      <h3>***Campaign Title***</h3>
+    </div>
+    <div class="nav navbar-nav navbar-right">
+      <a>Hosted by Todah</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3" style="text-align: center">
+      <a routerLink="/campaignPage"><button type="button" class="btn btn-primary">Go to Campaign Page</button></a><br><br><br>
+      <a routerLink="/cancelPayment"><button type="button" class="btn btn-danger">Cancel Payment</button></a>
+    </div>
+    <div class="col-md-6">
+      <h3 style="text-align: center">Increase Amount</h3>
+      <h5 style="text-align: center">Feel free to increase your donation here!</h5>
+      <div class="input-group">
+        <span class="input-group-addon">$</span>
+        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+        <span class="input-group-addon">.00</span>
+      </div>
+      <div>
+        <input type="checkbox" id="coverFee" name="coverFee">
+        <label for="coverFee">Cover the Fees with your Donation</label>
+        <p><a href="/pricing">More Information</a></p>
+      </div>
+      <div>
+        <input type="checkbox" id="anonymous" name="anonymous">
+        <label for="anonymous">Make your Gift Anonymous</label>
+      </div>
+      <div style="text-align: center">
+        <!-- On click takes to payment processor -->
+        <button type="button" class="btn btn-warning">DONATE TO THIS CAMPAIGN!!</button>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label for="referral">Referred by:</label><br>
+      <input type="text" name="referral" id="referral"><br><br><br>
+      <label for="story">Tell your Story!<br>Why is this gift special to you?</label><br>
+      <!-- Input automatically filled in to 'comment' section of campaign page -->
+      <textarea type="text" name="story" id="story" rows="5"></textarea>
+    </div>
+  </div>
+</div>
