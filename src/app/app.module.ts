@@ -58,9 +58,7 @@ import { CampaignService } from './campaign/campaign.service';
     HttpModule,
     FormsModule, 
     ReactiveFormsModule,
-     msCampForm,
     HttpClientModule
-    development
   ],
 
   providers: [CampaignService],
