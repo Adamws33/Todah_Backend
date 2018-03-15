@@ -6,7 +6,7 @@ expressLogging = require ('express-logging'),
 logger =require ('logops');
 var app = express();
 
-var logger= reguire('express-logger');
+var logger= require('express-logger');
 
 server.use(logger({path: "../index"}));
  
