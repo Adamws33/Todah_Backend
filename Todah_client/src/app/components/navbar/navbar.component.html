@@ -1,0 +1,309 @@
+<!-- Make more mobile friendly.  Some features do not hold to small computer screens or tablets specifically.  Double check ALL mobile device options however. -->
+<!-- Mobile functionality should be checked on ALL levels -->
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span> 
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <!-- Add Todah logo here -->
+      <a class="navbar-brand" routerLink="/home">Home</a>
+      <a  class="how-it-works" routerLink="/howItWorks">How it Works</a>
+      <a class="about" routerLink="/about">About</a>
+      <a class="contact" routerLink="/contact">Contact</a>
+      <!-- <a class="pricing" routerLink="/pricing">Pricing</a> -->
+    </div>
+
+    <!-- Features don't quite work with mobile dropdown -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <form class="navbar-form navbar-left">
+        <!-- Idea is that starting a campaign carries that yellow/orange color all the way through the envelope wall -->
+          <!-- <a routerLink="/startCampaign"><button type="button" class="btn btn-warning btn-lg">Start a Campaign</button></a>
+          <a routerLink="/snapshot"><button type="button" class="btn btn-primary btn-lg">Find a Campaign</button></a> -->
+        <!-- Only visible when logged in as admin -->
+        <!-- <a routerLink="/admin"><button type="button" class="btn btn-default">Admin Portal</button></a> -->
+      </form>
+      
+      
+      <form class="navbar-form navbar-right">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search Campaigns" list="categories">
+          <datalist id="categories">
+            <option value="Animals"></option>
+            <option value="Arts & Culture"></option>
+            <option value="Children & Youth"></option>
+            <option value="Disabilites"></option>
+            <option value="Disaster Relief"></option>
+            <option value="Economic Development"></option>
+            <option value="Education"></option>
+            <option value="Environment"></option>
+            <option value="Faith"></option>
+            <option value="Girls & Women"></option>
+            <option value="Global Issues"></option>
+            <option value="Health"></option>
+            <option value="Poverty"></option>
+            <option value="Science & Technology"></option>
+            <option value="Veterans"></option>
+          </datalist>
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="button">Search</button>
+          </span>
+        </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-search"></i><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a routerLink="/browseCategory">
+                
+                <!-- When count is at zero, have as no value so the badge does no show (PERTAINS TO ALL AREAS WITH THESE BADGE ICONS) -->
+                <i 
+                class="fas fa-paw fa-2x" 
+                data-fa-transform="shrink-3.5" 
+                data-fa-mask="fas fa-circle"
+                ></i> Animals <span class="badge"></span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/browseCategory">
+                <i 
+                class="fas fa-paint-brush fa-2x" 
+                data-fa-transform="shrink-5.5" 
+                data-fa-mask="fas fa-circle"
+                ></i> Arts & Culture <span class="badge">2</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/browseCategory">
+                <i 
+                class="fas fa-child fa-2x" 
+                data-fa-transform="shrink-3.5" 
+                data-fa-mask="fas fa-circle"
+                ></i> Children & Youth <span class="badge">22</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/browseCategory">
+                <i 
+                class="fas fa-universal-access fa-2x"
+                ></i> Disabilities <span class="badge">22</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/browseCategory">
+                <i 
+                class="fas fa-ambulance fa-2x" 
+                data-fa-transform="shrink-6.5" 
+                data-fa-mask="fas fa-circle"
+                ></i> Disaster Relief <span class="badge">13</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/browseCategory">
+                <i 
+                class="fas fa-dollar-sign fa-2x" 
+                data-fa-transform="shrink-3.5" 
+                data-fa-mask="fas fa-circle"
+                ></i> Economic Development <span class="badge">45</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/browseCategory">
+                <i 
+                class="fas fa-graduation-cap fa-2x" 
+                data-fa-transform="shrink-5.5" 
+                data-fa-mask="fas fa-circle"
+                ></i> Education <span class="badge">22</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/browseCategory">
+                <i 
+                class="fas fa-leaf fa-2x" 
+                data-fa-transform="shrink-5.5" 
+                data-fa-mask="fas fa-circle"
+                ></i> Environment <span class="badge">2</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/browseCategory">
+                <i 
+                class="fas fa-users fa-2x" 
+                data-fa-transform="shrink-5.5" 
+                data-fa-mask="fas fa-circle"
+                ></i> Faith <span class="badge"></span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/browseCategory">
+                <i 
+                class="fas fa-female fa-2x" 
+                data-fa-transform="shrink-3.5" 
+                data-fa-mask="fas fa-circle"
+                ></i> Girls & Women <span class="badge"></span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/browseCategory">
+                <i 
+                class="fas fa-globe fa-2x"
+                ></i> Global Issues <span class="badge">1</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/browseCategory">
+                <i 
+                class="fas fa-heartbeat fa-2x" 
+                data-fa-transform="shrink-5.5" 
+                data-fa-mask="fas fa-circle"
+                ></i> Health <span class="badge">21</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/browseCategory">
+                <i 
+                class="fas fa-utensils fa-2x" 
+                data-fa-transform="shrink-5.5" 
+                data-fa-mask="fas fa-circle"
+                ></i> Poverty <span class="badge">11</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/browseCategory">
+                <i 
+                class="fas fa-flask fa-2x" 
+                data-fa-transform="shrink-5.5" 
+                data-fa-mask="fas fa-circle"
+                ></i> Science & Technology <span class="badge">10</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/browseCategory">
+                <i 
+                class="fas fa-fighter-jet fa-2x" 
+                data-fa-transform="shrink-5.5" 
+                data-fa-mask="fas fa-circle"
+                ></i> Veterans <span class="badge">5</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<nav class="navbar navbar-default" id="secondNav">
+  <img  class="todahHeaderLogo" src="../../../assets/todah_logo.PNG" alt="" />
+
+  <a  routerLink="/snapshot"><button type="button" class="btn btn-lg">Find a Campaign</button></a>
+  <a  routerLink="/startCampaign"><button type="button" class="btn btn-lg">Start a Campaign</button></a>
+ 
+
+
+  <ul class="nav navbar-nav navbar-right loginRetister">
+    <!-- Profile link only visible when logged in -->
+    <li><a routerLink="/profile" style="padding-right: 0">Profile</a></li>
+    <!-- Bar only visible when profile is visible -->
+    <li><a style="padding: auto 0">|</a></li>
+    <!-- On click to modal for register (left side) and login (right side) => options for login through Google and Facebook needed as well -->
+    <!-- When logged in, switch to logout -->
+    <li><a data-toggle="modal" data-target="#registrationsignin" style="padding-left: 0">Register/Login</a></li>
+  </ul>
+
+
+</nav>
+    
+    <div class="modal fade registrationlogin" id="registrationsignin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="container-12 ">
+
+      <div class="modal-dialog" role="document">
+          <div class="container registrationlogin">
+<div class="row">
+  <div class="col-sm-12">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span class="spanx" aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+
+            <div class="container">
+              <div class="row">  
+                   <div class="modal-content col-lg-6 registermodal">
+                     <div class="modal-header">
+                       <h5 class="modal-title" id="registrationsignin">Register</h5>
+                     </div>
+                     <div></div>
+                     <div class="modal-body">
+                       <div class="container">
+                       <div class="row">
+                         
+                            <!-- <mat-form-field class="col-md-12">
+                                <input matInput placeholder="Enter your full name (or the name of your organization)">
+                              </mat-form-field>
+                        
+                       </div> 
+                       <div class="row">
+                         <div class="col">
+                              <mat-form-field>
+                                <input matInput placeholder="Enter your e-mail address">
+                              </mat-form-field>
+                         </div>
+                         <div class="col">
+                            <mat-form-field>
+                                <input matInput placeholder="Enter desired username">
+                              </mat-form-field>
+                         </div>
+                       </div>
+
+                       <div class="row">
+                         <div class="col">
+                            <mat-form-field>
+                                <input matInput placeholder="Enter password">
+                              </mat-form-field>
+                         </div>
+                         <div class="col">
+                              <mat-form-field>
+                                <input matInput placeholder="Re-enter password">
+                              </mat-form-field>
+                         </div>
+                       </div>
+                      </div> 
+                     </div>
+                     <div class="modal-footer">
+                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                       <button type="button" class="btn btn-primary">Save changes</button>
+                     </div>
+                   </div>
+        
+        
+        
+                   <div class="modal-content col-lg-4 signinmodal">
+                     <div class="modal-header">
+                       <h5 class="modal-title" id="registrationsignin">Login</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       
+                        </button>
+                     </div>
+                   <div class="modal-body">
+                     ...
+                   </div>
+                        <div class="modal-footer">
+                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                   </div>
+            </div>
+          </div>
+</div>
+</div>
+</div> -->
