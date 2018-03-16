@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-
+app.use('/api/users/Token', require('./controllers/tokencontroller'));
 app.use('/api/users', require('./controllers/userscontroller'));
 app.use('/api/campaigns', require('./controllers/campaigncontroller'));
 app.use('/api/test', function(req,res){
