@@ -45,9 +45,14 @@ passport.use(new LocalStrategy(
 //         });
 //     }
 // ));
+
+//const FACEBOOK_APP_ID = '180896672633688';
+//const FACEBOOK_APP_SECRET = '9eb68760579d7a63a194079c888bb995';
+
 // passport.use(new FacebookStrategy({
 //     clientId: FACEBOOK_APP_ID,
-//     callbackURL: "http://localHost:300/auth/Facebook/callback"
+//     clientSecret: FACEBOO_APP_SECRET
+//     callbackURL: "http://localHost:3000/auth/Facebook/callback"
 // },
 // function(accessToken,refreshToken,profile,cb ){
 //     User.findOrCreate({facebookId:profile.id}, function (err,user){

@@ -182,7 +182,7 @@ module.exports = (sequelize, DataTypes) => {
     campaign_slug:{
       type: DataTypes.STRING,
       validate:{
-        max:255
+        max:500
       }
     },
     never_event:{
