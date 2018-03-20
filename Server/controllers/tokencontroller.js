@@ -24,7 +24,7 @@ router.post('/', requireSignin ,  (req, res, next)=> {
     token : createToken(req.user.uid)
 }
 console.log("******TOKEN*********",userData.token)
-res.json({message: "logged in successfully", user: userData})
+res.json({message: "logged in successfully", user: userData, token: userData.token})
 })
 
 module.exports = router;
