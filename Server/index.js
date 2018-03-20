@@ -14,6 +14,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use('/api/users/Token', require('./controllers/tokencontroller'));
+// app.use('/api/users/login', require('./controllers/tokencontroller'));
 app.use('/api/users', require('./controllers/userscontroller'));
 app.use('/api/campaigns', require('./controllers/campaigncontroller'));
 app.use('/api/test', function(req,res){
