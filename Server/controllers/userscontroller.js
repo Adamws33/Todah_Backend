@@ -77,7 +77,7 @@ router.post('/login', requireSignin ,  (req, res, next) => {
                     user:user,
                     message: 'successfully authenticated',
                     // session token not working ATM aws 03/10
-                    sessionToken: createToken(req.body.uid),
+                    token: createToken(req.body.uid),
                     message: `Welcome ${user.dataValues.firstname}`
                   });
                 //   console.log("*************** token ************************", res.sessionToken)
