@@ -6,7 +6,7 @@ const passport = require('passport');
 const requireJWT = passport.authenticate('jwt', {session: false});
 
 router.post('/',requireJWT,(req,res) => {
-    console.log("*************req.body*******************", req.body)
+    console.log("*************req.body*******************", req)
     Campaign.create({
         id: req.body.id,
         modified_date: req.body.modified_date,
@@ -59,8 +59,10 @@ router.post('/',requireJWT,(req,res) => {
 
     }).then(
         function createSuccess(campaign){
-            res.json(campaign)
-            console.log("*********CAMPAIGN AFTER POST *********************", campaign)
+            res.json({
+                campId:campaign.dataValues.id,
+              });
+
         },
         function createError(err) {
             res.send(500, err.message);
