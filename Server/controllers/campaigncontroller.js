@@ -6,33 +6,33 @@ const passport = require('passport');
 const requireJWT = passport.authenticate('jwt', {session: false});
 
 router.post('/',requireJWT,(req,res) => {
-    console.log("*************req.body*******************", req.body)
+    console.log("*************req.body*******************", req)
     Campaign.create({
-       id: req.body.id,
-       modified_date: req.body.modified_date,
-       create_date: req.body.create_date,
-       project_image_thumb_url: req.body.project_image_thumb_url,
-       creator_id: req.body.creator_id,
-       organization_name: req.body.organization_name,
-       organization_ein: req.body.organization_ein,
-       project_title: req.body.project_title,
-       project_purpose: req.body.project_purpose,
-       project_website: req.body.project_website,
-       project_image: req.body.project_image,
-       finished_step_one: req.body.finished_step_one,
-       slider_inputs: req.body.slider_inputs,
-       slider_ranges: req.body.slider_ranges,
-       goal_currency: req.body.goal_currency,
-       goal: req.body.goal,
-       finished_step_two: req.body.finished_step_two,
-       end_date: req.body.end_date,
-       is_published: req.body.is_published,
-       funder_count: req.body. funder_count,
-       funded_amount_currency: req.body.funded_amount_currency,
-       funded_amount: req.body.funded_amount,
-       project_video: req.body.project_video,
+        id: req.body.id,
+        modified_date: req.body.modified_date,
+        create_date: req.body.create_date,
+        project_image_thumb_url: req.body.project_image_thumb_url,
+        creator_id: req.body.creator_id,
+        organization_name: req.body.organization_name,
+        organization_ein: req.body.organization_ein,
+        project_title: req.body.project_title,
+        project_purpose: req.body.project_purpose,
+        project_website: req.body.project_website,
+        project_image: req.body.project_image,
+        finished_step_one: req.body.finished_step_one,
+        slider_inputs: req.body.slider_inputs,
+        slider_ranges: req.body.slider_ranges,
+        goal_currency: req.body.goal_currency,
+        goal: req.body.goal,
+        finished_step_two: req.body.finished_step_two,
+        end_date: req.body.end_date,
+        is_published: req.body.is_published,
+        funder_count: req.body. funder_count,
+        funded_amount_currency: req.body.funded_amount_currency,
+        funded_amount: req.body.funded_amount,
+        project_video: req.body.project_video,
         project_short_description: req.body.project_short_description,
-       project_category_id: req.body.project_category_id,
+        project_category_id: req.body.project_category_id,
         is_approved: req.body.is_approved,
         initial_funds_currency: req.body.initial_funds_currency,
         initial_funds: req.body.initial_funds,
@@ -59,8 +59,10 @@ router.post('/',requireJWT,(req,res) => {
 
     }).then(
         function createSuccess(campaign){
-            res.json(campaign)
-            console.log("*********CAMPAIGN AFTER POST *********************", campaign)
+            res.json({
+                campId:campaign.dataValues.id,
+              });
+
         },
         function createError(err) {
             res.send(500, err.message);
