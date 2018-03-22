@@ -7,8 +7,9 @@ require('../services/passport');
 
 const requireSignin = passport.authenticate('local', {session: false});
 const jwt = require('jwt-simple');
-// const requireJWT = passport.authenticate('jwt', {session: false});
-
+const G = passport.authenticate('google', {scope:['profile']});
+const FB = passport.authenticate('facebook');
+const TW = passport.authenticate('twitter')
 
 const createToken = (userId) => {
     const currentTime = new Date().getTime();
