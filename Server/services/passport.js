@@ -5,7 +5,7 @@ const TwitterStrategy = require('passport-twitter').Strategy;
 const db = require('../models/index').sequelize; 
 const User = db.import('../models/users');
 const bcrypt = require('bcryptjs');
-const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const JWTStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 
