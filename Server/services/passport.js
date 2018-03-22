@@ -48,7 +48,8 @@ passport.use(new LocalStrategy(
 passport.use(new FacebookStrategy({
     clientId: process.env.FB_ID,
     clientSecret: process.env.FB_SECRET,
-    callbackURL: "http://localHost:300/auth/Facebook/callback"
+    callbackURL: "http://localHost:300/auth/Facebook/callback",
+    profileFields: ['id', 'displayName', 'photos', 'email']
 },
 function(accessToken,refreshToken,profile,cb ){
     User.findOrCreate({facebookId:profile.id}, function (err,user){

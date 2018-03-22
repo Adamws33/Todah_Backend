@@ -8,7 +8,7 @@ require('../services/passport');
 const requireSignin = passport.authenticate('local', {session: false});
 const jwt = require('jwt-simple');
 const G = passport.authenticate('google', {scope:['profile']});
-const FB = passport.authenticate('facebook');
+const FB = passport.authenticate('facebook', {scope: ['user_id', 'user_password']});
 const TW = passport.authenticate('twitter')
 
 const createToken = (userId) => {
