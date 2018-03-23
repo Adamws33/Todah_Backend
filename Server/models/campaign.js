@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     creator_id:{
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
     organization_name: {
       type: DataTypes.STRING,
@@ -44,12 +44,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     project_title: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate:{
         max:150
       }
     },
     project_purpose:{
       type: DataTypes.STRING,
+      allowNull: false,
       description: DataTypes.TEXT
     },
     project_website: {
@@ -63,6 +65,7 @@ module.exports = (sequelize, DataTypes) => {
       validate:{
         max:100
       }
+//^ should be required - once functional 
     },
     finished_step_one:{
       type: DataTypes.BOOLEAN,
@@ -130,6 +133,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     project_short_description: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate:{
         max:150
       }
@@ -182,8 +186,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     campaign_slug:{
       type: DataTypes.STRING,
+      allowNull: false,
       validate:{
-        max:255
+        max:500
       }
     },
     never_event:{
@@ -192,6 +197,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     project_role:{
       type: DataTypes.STRING,
+      allowNull: false,
       validate:{
         max:255
       }

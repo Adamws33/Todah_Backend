@@ -15,7 +15,7 @@ const createToken = (userId) => {
   // process.env.JWTSECRET
 } 
 
-router.post('/', requireSignin ,  (req, res, next)=> {
+router.post('/', requireSignin,  (req, res, next)=> {
   const userData = {
     firstname : req.user.firstname,
     lastname : req.user.lastname,
