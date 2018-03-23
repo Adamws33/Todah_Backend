@@ -12,7 +12,6 @@ const jwt = require('jwt-simple');
 const G = passport.authenticate('google', {scope:['profile']});
 const FB = passport.authenticate('facebook', {scope: ['user_id', 'user_password']});
 const TW = passport.authenticate('twitter')
-
 const createToken = (userId) => {
     const currentTime = new Date().getTime();
     return jwt.encode({sub: userId , iat: currentTime}, "i_am_secret" || process.env.JWT_SECRET )
