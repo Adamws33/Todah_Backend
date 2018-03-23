@@ -9,13 +9,9 @@ const requireG = passport.authenticate('google', {scope:['profile']});
 const requireFB = passport.authenticate('facebook', {scope: ['user_id', 'user_password']});
 const requireTW = passport.authenticate('twitter')
 const jwt = require('jwt-simple');
-<<<<<<< HEAD
-=======
 const G = passport.authenticate('google', {scope:['profile']});
 const FB = passport.authenticate('facebook', {scope: ['user_id', 'user_password']});
 const TW = passport.authenticate('twitter')
-
->>>>>>> b4757ac72d7731490151295ed3868fa7e07be061
 const createToken = (userId) => {
     const currentTime = new Date().getTime();
     return jwt.encode({sub: userId , iat: currentTime}, "i_am_secret" || process.env.JWT_SECRET )
