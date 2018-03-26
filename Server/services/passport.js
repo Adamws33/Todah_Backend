@@ -1,11 +1,11 @@
 const passport = require('passport'); 
 const LocalStrategy = require('passport-local').Strategy; 
-const FacebookStrategy =require('passport-facebook').Strategy;
-const TwitterStrategy = require('passport-twitter').Strategy;
+// const FacebookStrategy =require('passport-facebook').Strategy;
+// const TwitterStrategy = require('passport-twitter').Strategy;
 const db = require('../models/index').sequelize; 
 const User = db.import('../models/users');
 const bcrypt = require('bcryptjs');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+// const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const JWTStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 
@@ -45,30 +45,30 @@ passport.use(new LocalStrategy(
 //         });
 //     }
 // ));
-passport.use(new FacebookStrategy({
-    clientId: process.env.FB_ID,
-    clientSecret: process.env.FB_SECRET,
-    callbackURL: "http://localHost:300/auth/Facebook/callback",
-    profileFields: ['id', 'displayName', 'photos', 'email']
-},
-function(accessToken,refreshToken,profile,cb ){
-    User.findOrCreate({facebookId:profile.id}, function (err,user){
-        return cb(err,user);
-    } );
-}
-));
+// passport.use(new FacebookStrategy({
+//     clientId: process.env.FB_ID,
+//     clientSecret: process.env.FB_SECRET,
+//     callbackURL: "http://localHost:300/auth/Facebook/callback",
+//     profileFields: ['id', 'displayName', 'photos', 'email']
+// },
+// function(accessToken,refreshToken,profile,cb ){
+//     User.findOrCreate({facebookId:profile.id}, function (err,user){
+//         return cb(err,user);
+//     } );
+// }
+// ));
 
-passport.use (new GoogleStrategy({
-    clientKey:  process.env.GCLIENT_KEY,
-    clientSecret: process.env.GCLIENT_SECRET,
-    callbackURL:"HTTP://127.0.0.1:3000/auth/google/callback"
-},
-function (token,tokenSecret,profile,done) {
-    User.findOrCreate ({googleId: profile.id}, function(err, user){
-        return done (err,user);
-    });
-}
-));
+// passport.use (new GoogleStrategy({
+//     clientKey:  process.env.GCLIENT_KEY,
+//     clientSecret: process.env.GCLIENT_SECRET,
+//     callbackURL:"HTTP://127.0.0.1:3000/auth/google/callback"
+// },
+// function (token,tokenSecret,profile,done) {
+//     User.findOrCreate ({googleId: profile.id}, function(err, user){
+//         return done (err,user);
+//     });
+// }
+// ));
 
 // passport.use(new TwitterStrategy({
 //     customerKey: TWITTER_CONSUMER_KEY,
