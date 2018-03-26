@@ -5,19 +5,19 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 require('../services/passport');
 const requireSignin = passport.authenticate('local', {session: false});
-const requireG = passport.authenticate('google', {scope:['profile']});
-const requireFB = passport.authenticate('facebook', {scope: ['user_id', 'user_password']});
-const requireTW = passport.authenticate('twitter')
+// const requireG = passport.authenticate('google', {scope:['profile']});
+// const requireFB = passport.authenticate('facebook', {scope: ['user_id', 'user_password']});
+// const requireTW = passport.authenticate('twitter')
 const jwt = require('jwt-simple');
-const G = passport.authenticate('google', {scope:['profile']});
-const FB = passport.authenticate('facebook', {scope: ['user_id', 'user_password']});
-const TW = passport.authenticate('twitter')
+
+
+
 const createToken = (userId) => {
     const currentTime = new Date().getTime();
     return jwt.encode({sub: userId , iat: currentTime}, "i_am_secret" || process.env.JWT_SECRET )
     // process.env.JWTSECRET
 } 
-router.post('/signup', requireFB, (req, res)  => {
+router.post('/signup', (req, res)  => {
     console.log("*************** signup req.body ************************", req.body)
     User.create({
         password: bcrypt.hashSync(req.body.password), 
@@ -94,6 +94,9 @@ router.post('/login', requireSignin , (req, res, next) => {
       );
     // res.json({message: "logged in successfully", user: userData})
 })
+
+
+
 router.get('/:email', function(req, res) {
     console.log("******************",req)
     var user = req.params.email;

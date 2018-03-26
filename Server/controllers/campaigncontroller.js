@@ -4,6 +4,54 @@ const Campaign = db.sequelize.import('../models/campaign');
 const jwt = require('jwt-simple');
 const passport = require('passport');
 const requireJWT = passport.authenticate('jwt', {session: false});
+const multer = require('multer');
+const path = require('path');
+
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: function(req, file, cb) {
+            cb(null, './uploads/');
+        },
+        filename: function(req, file, cb) {
+            cb(null, req.body.id + Date.now() + path.extname(file.originalname))
+        }
+    }),
+    fileFilter: (req, file, cb) => {
+        if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+            return cb(null, true);
+        } else {
+            return cb(null, false);
+        }
+    },
+    limits: 1024 * 1024 * 5
+})
+
+router.post('/upload-image', upload.single('campaign-img'), (req, res) => {
+    console.log('*******REQUEST************************', req)
+    // Campaign.findOne({ where: { id: req.user.id} }).then(
+    //     (user) => {
+    //         const _user = user;
+             Campaign.create({
+                img: req.file.path
+            }),
+            //  { where: { id: user.id }}).then(
+                (updateSuccess) => {
+                    res.json({
+                        message: 'image was added',
+                        imgRoute:_user.img
+                    // });
+                },
+             (err) => {
+                 res.json({error: err})
+                }
+            )
+        }
+//         (err) => {
+//             res.json('there was an error', err)
+        }
+    )
+
+
 
 router.post('/',requireJWT,(req,res) => {
     console.log("*************req.body*******************", req)
@@ -83,5 +131,29 @@ router.delete('/:id',function(req,res) {
         }
     );
 });
+router.put('/:id',function(req,res) {
+    console.log("*********UPDATE REQ*********************", req.params)
+    console.log("*********UPDATE REQ*********************", req.body)
+    var data = req.params.id;
+    Campaign.update({
+        goal: req.body.goal,
+        slider_inputs: req.body.slider_inputs,
+        slider_ranges: req.body.slider_ranges,
+        goal_currency: req.body.goal_currency,
+        initial_funds_currency: req.body.initial_funded_currency,
+        initial_funds: req.body.initial_funded,
+        end_date: req.body.end_date
+    },
+        {
+        where: { id: data }
+    }).then(
+        function updateCampaignSuccess(data){
+            res.send("You have successfully updated your campaign.");
+        },
+        function updateCampaignError(err){
+            res.status(err).send(err);
+        }
+    );
+})
 
 module.exports = router;
