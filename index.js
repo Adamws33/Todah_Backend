@@ -23,7 +23,7 @@ app.use('/api/test', function(req,res){
 // endpoints 
 router(app);
 
-http.listen(process.env.PORT, function(){
+http.listen(process.env.PORT || 3000, function(){
 
     console.log(`listening on port ${process.env.PORT}`)
 })

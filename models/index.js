@@ -13,7 +13,7 @@ var db        = {};
 // } else {
 //   var sequelize = new Sequelize(config.database, config.username, config.password, config);
 // }
-var sequelize = new Sequelize(process.env.DATABASE_URL, { 
+var sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://vjcamielxlwtfg:4481521ada2bd6a7be9df6eb5e1b1bf725e5f83fcea0cf323c7effaf248955ad@ec2-54-221-207-184.compute-1.amazonaws.com:5432/df7dnugmc71ed1' , { 
   port: 5432,
   dialect: 'postgres'
 })
