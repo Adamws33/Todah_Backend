@@ -38,6 +38,7 @@ router.post('/signup', (req, res)  => {
         
     }).then(
         (successData) => {
+            console.log("**********successData***********", successData)
             const userData = {
             token : createToken(successData.uid),
             }
@@ -58,7 +59,7 @@ router.post('/login', requireSignin , (req, res, next) => {
     //     // email : ,
     //     // token : createToken(req.body.uid),
     //     // password: bcrypt.hashSync(req.body.password) 
-     //per inconsistency with API requeest and model removed img key
+    //  per inconsistency with API requeest and model removed img key
     //     // img: req.user.img
     // }
     
