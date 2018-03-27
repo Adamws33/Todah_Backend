@@ -132,8 +132,6 @@ router.delete('/:id',function(req,res) {
     );
 });
 router.put('/:id',function(req,res) {
-    console.log("*********UPDATE REQ*********************", req.params)
-    console.log("*********UPDATE REQ*********************", req.body)
     var data = req.params.id;
     Campaign.update({
         goal: req.body.goal,
@@ -147,11 +145,12 @@ router.put('/:id',function(req,res) {
         {
         where: { id: data }
     }).then(
-        function updateCampaignSuccess(data){
+        function createSuccess(campaign){
             res.send("You have successfully updated your campaign.");
+
         },
-        function updateCampaignError(err){
-            res.status(err).send(err);
+        function createError(err) {
+            res.send(500, err.message);
         }
     );
 })
